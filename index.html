@@ -1,1 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name | Portfolio</title>
+
+  <!-- Tailwind – 1‑liner utility CSS (optional but handy) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS scroll‑reveal (optional) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="bg-slate-900 text-slate-100 scroll-smooth leading-relaxed">
+
+  <!-- Hero -->
+  <header class="min-h-screen flex flex-col items-center justify-center text-center">
+    <h1 id="heroTitle" class="text-5xl font-bold mb-4">Hi, I’m Your Name</h1>
+    <p data-aos="fade-up" data-aos-delay="150" class="max-w-xl">
+      Mechanical/software engineer with a passion for robotics, CAD and coffee‑powered debugging.
+    </p>
+  </header>
+
+  <!-- Projects -->
+  <section id="projects" class="py-20 px-6">
+    <h2 class="section-title" data-aos="fade-right">Featured Projects</h2>
+
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mt-10">
+      <!-- Project card -->
+      <article class="card" data-aos="zoom-in">
+        <img src="assets/project1.png" alt="Project screenshot" class="rounded-t-2xl" />
+        <div class="p-5">
+          <h3 class="font-semibold text-lg mb-2">Autonomous Rover</h3>
+          <p>ROS‑based path‑planning rover built for NASA Swarmathon.</p>
+        </div>
+      </article>
+
+      <!-- duplicate for more projects -->
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 px-6 bg-slate-800">
+    <h2 class="section-title" data-aos="fade-right">Get in touch</h2>
+    <p data-aos="fade-up" data-aos-delay="100">
+      Email <a href="mailto:you@domain.net" class="underline">you@domain.net</a> or find me on
+      <a href="https://linkedin.com/in/you" class="underline">LinkedIn</a>.
+    </p>
+  </section>
+
+  <!-- Scripts: GSAP first, optional plugins, then AOS, then your code -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
 
