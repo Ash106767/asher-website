@@ -142,3 +142,11 @@ body {
   white-space: nowrap;
 }
 
+
+.email-link {
+  text-decoration: underline;
+  color: var(--text);
+  font-weight: 600;
+}
+.email-link:hover { color: var(--accent); }
+
