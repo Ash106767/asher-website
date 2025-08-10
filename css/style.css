@@ -5,7 +5,7 @@
   --muted: #5f645d;
   --line: #e7e3d8;
   --accent: #e9772f;   /* orange */
-  --accent-2: #7a9a86; /* green for tags */
+  --accent-2: #A19B90; /*  tags */
   --radius: 16px;
   --shadow: 0 1px 1px rgba(20,20,15,.04), 0 12px 30px rgba(20,20,15,.08);
   --space: clamp(16px, 2vw, 24px);
