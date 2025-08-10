@@ -1,1 +1,109 @@
+/* ---- Theme (dark greens, beiges, greys, orange accent) ---- */
+:root{
+  --bg: #0f1e18;         /* near-black green */
+  --surface: #14261f;    /* card/bg surface */
+  --text: #eae3d3;       /* beige text */
+  --muted: #9da49b;      /* grey-green */
+  --line: #2b3a34;       /* separators */
+  --accent: #ef8a3d;     /* orange accent */
+  --accent-2: #6a8b7a;   /* desaturated green for chips */
+  --radius: 14px;
+  --shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 12px 30px rgba(0,0,0,.35);
+  --space: clamp(16px, 2vw, 24px);
+  --maxw: 1100px;
+  --speed: 400ms;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font: 400 16px/1.6, Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+/* Accessibility */
+.skip { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+.skip:focus { position:static; width:auto; height:auto; padding:.5rem 1rem; background:var(--accent); color:black; }
+
+.wrap { width:min(100% - 2*var(--space), var(--maxw)); margin-inline:auto; }
+
+/* Header */
+.site-header {
+  position: sticky; top: 0; backdrop-filter: blur(6px);
+  background: color-mix(in oklab, var(--bg), transparent 15%);
+  border-bottom: 1px solid var(--line);
+  z-index: 50;
+}
+.site-header .wrap { display:flex; align-items:center; justify-content:space-between; padding: .8rem 0; }
+.brand { font: 700 clamp(18px, 2.8vw, 24px)/1 "Space Grotesk", Inter, system-ui; margin:0; letter-spacing:.2px; }
+.nav a { color: var(--muted); text-decoration:none; margin-left: 1rem; padding:.35rem .6rem; border-radius: 999px; border:1px solid transparent; }
+.nav a:hover { color: var(--text); border-color: var(--line); }
+
+/* Sections & seams */
+.projects, .contact { padding: calc(var(--space)*1.5) var(--space); }
+.project + .project { border-top: 1px solid var(--line); margin-top: calc(var(--space)*2); padding-top: calc(var(--space)*2); }
+
+/* Project block */
+.project { background: linear-gradient(180deg, color-mix(in oklab, var(--surface), transparent 10%), transparent 30%); padding: var(--space); border-radius: var(--radius); box-shadow: var(--shadow); }
+.project-head { display:flex; flex-wrap:wrap; gap:.6rem 1rem; align-items:baseline; }
+.project h2 { margin:0; font: 700 clamp(20px, 3vw, 28px)/1.15 "Space Grotesk", Inter, system-ui; letter-spacing:.2px; }
+.tags { list-style:none; display:flex; gap:.4rem; margin: 0; padding:0; }
+.tags li { font-size:.8rem; color: var(--bg); background: var(--accent-2); padding:.18rem .55rem; border-radius:999px; }
+
+/* Blurb */
+.blurb { margin:.6rem 0 1rem; color: var(--text); }
+
+/* Media grid — true masonry via CSS columns; mixed ratios welcome */
+.media-grid {
+  column-width: 320px; column-gap: 14px; /* auto-responsiveness */
+}
+.media {
+  break-inside: avoid; margin: 0 0 14px 0; background: color-mix(in oklab, var(--surface), black 6%);
+  border: 1px solid var(--line); border-radius: 12px; overflow: clip;
+}
+.media img, .media video {
+  display:block; width:100%; height:auto; /* keep natural aspect */
+  background: #111; /* placeholder if image is missing */
+}
+.media figcaption {
+  padding:.5rem .75rem; font-size:.85rem; color: var(--muted); border-top: 1px solid var(--line);
+}
+
+/* Details / dropdown */
+.more {
+  margin-top: 1rem; border: 1px dashed var(--line); border-radius: 12px; overflow: clip; background: color-mix(in oklab, var(--surface), black 4%);
+}
+.more > summary {
+  cursor: pointer; list-style: none; padding: .75rem 1rem; user-select: none; display:flex; align-items:center; gap:.6rem;
+}
+.more > summary::-webkit-details-marker { display:none; }
+.caret::before { content: "▸"; display:inline-block; transform: translateY(-1px); transition: transform var(--speed); }
+.more[open] .caret::before { transform: rotate(90deg) translateY(-1px); }
+.more-body { padding: .25rem 1rem 1rem; color: var(--muted); }
+
+/* Contact */
+.contact .wrap { padding: var(--space); background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--surface), #000 10%)); border:1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+.contact h2 { margin-top:0; font:700 clamp(20px, 3vw, 26px)/1.2 "Space Grotesk", Inter, system-ui; }
+.socials { list-style:none; padding:0; margin: .6rem 0 0; display:flex; flex-wrap:wrap; gap:.6rem; }
+.chip {
+  display:inline-flex; align-items:center; gap:.4rem; text-decoration:none; color: var(--text);
+  padding:.45rem .7rem; border-radius:999px; border:1px solid var(--line); background: color-mix(in oklab, var(--surface), black 6%);
+}
+.chip:hover { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent), transparent 70%); }
+
+/* Footer */
+.site-footer { border-top:1px solid var(--line); color: var(--muted); }
+.site-footer .wrap { padding: 1.1rem var(--space); }
+
+/* Subtle non-fade reveal animations (respecting reduced motion) */
+.reveal { transform: translateY(10px); /* no opacity fade */ }
+.reveal.in { transform: translateY(0); }
+.reveal, .more > summary, .chip { transition: transform var(--speed) cubic-bezier(.2,.8,.2,1), box-shadow var(--speed), border-color var(--speed); }
+.media:hover { transform: translateY(-2px); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  * { animation: none !important; transition: none !important; }
+  .reveal, .reveal.in { transform:none !important; }
+}
 
