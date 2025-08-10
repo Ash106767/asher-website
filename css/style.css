@@ -53,9 +53,31 @@ body {
 .nav a{ color:var(--muted); text-decoration:none; margin-left:1rem; padding:.35rem .6rem; border-radius:999px; border:1px solid transparent; }
 .nav a:hover{ color:var(--text); border-color:var(--line); background: var(--surface); }
 
-/* Sections & seams */
-.projects, .contact { padding: calc(var(--space)*1.5) var(--space); }
-.project + .project { border-top: 1px solid var(--line); margin-top: calc(var(--space)*2); padding-top: calc(var(--space)*2); }
+/* Projects container → 1 col on narrow, 2 cols on wide */
+.projects{
+  padding: calc(var(--space)*1.5) var(--space);
+  width: min(100% - 2*var(--space), var(--maxw));
+  margin-inline: auto;
+
+  display: grid;
+  grid-template-columns: 1fr;            /* default: single column */
+  gap: calc(var(--space)*1.25);          /* space between cards */
+}
+
+/* two columns when there’s room (tweak breakpoint if you like) */
+@media (min-width: 900px){
+  .projects{ grid-template-columns: 1fr 1fr; }
+}
+
+/* Keep the dotted “seam” only for single-column stacks */
+.project + .project{
+  border-top: 1px solid var(--line);
+  margin-top: calc(var(--space)*2);
+  padding-top: calc(var(--space)*2);
+}
+@media (min-width: 900px){
+  .project + .project{ border-top: 0; margin-top: 0; padding-top: 0; }
+}
 
 /* Project card (simple) */
 .project{
