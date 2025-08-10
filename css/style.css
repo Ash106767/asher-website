@@ -114,3 +114,31 @@ body {
 @media (prefers-reduced-motion: reduce){
   *{ animation:none !important; transition:none !important; }
 }
+
+/* Tag chips next to the title */
+.project-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .6rem 1rem;
+}
+
+.tags {
+  list-style: none !important;   /* force off bullets */
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin: 0;
+  padding: 0;
+}
+
+.tags li {
+  font-size: .8rem;
+  color: #16301f;
+  background: #e8f0eb;
+  border: 1px solid #d3e1d8;
+  padding: .18rem .55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
