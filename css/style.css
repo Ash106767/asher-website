@@ -1,17 +1,33 @@
 :root{
-  --bg: #574e40;
-  --surface: #dfd9c0;
-  --text: #302c24;
-  --muted: #978d6f;
-  --line: #675e47;
-  --accent: #e9772f;   /* orange */
-  --accent-2: #A19B90; /*  tags */
+  /* Core palette */
+  --bg: #f6f5f1;          /* page background */
+  --surface: #ffffff;     /* cards (projects, contact) */
+  --text: #1b1b19;        /* primary text */
+  --muted: #5f645d;       /* secondary text (captions, notes) */
+  --line: #e7e3d8;        /* borders and dividers */
+
+  /* Accents */
+  --accent: #e9772f;      /* hover/focus/links accent */
+  --accent-2: #7a9a86;    /* optional secondary accent */
+
+  /* Components (were hard-coded before) */
+  --chip-bg: #e8f0eb;     /* tag chip background */
+  --chip-border: #d3e1d8; /* tag chip border */
+  --chip-text: #16301f;   /* tag chip text */
+
+  --media-bg: #f2f2ef;        /* media tile bg */
+  --media-fallback: #f0f0ed;  /* <img>/<video> fallback bg */
+  --details-bg: #fbfaf7;      /* dropdown panel bg */
+  --header-glass: rgba(255,255,255,.75); /* sticky header backdrop */
+
+  /* Layout/animation (unchanged) */
   --radius: 16px;
   --shadow: 0 1px 1px rgba(20,20,15,.04), 0 12px 30px rgba(20,20,15,.08);
   --space: clamp(16px, 2vw, 24px);
   --maxw: 1100px;
   --speed: 400ms;
 }
+
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
