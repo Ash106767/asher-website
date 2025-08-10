@@ -1,25 +1,25 @@
 :root{
   /* Core palette */
-  --bg: #7d6b57;          /* page background */
-  --surface: #ffffff;     /* cards (projects, contact) */
-  --text: #1b1b19;        /* primary text */
-  --muted: #5f645d;       /* secondary text (captions, notes) */
-  --line: #e7e3d8;        /* borders and dividers */
+  --bg: #DFDAD5;          /* Timberwolf page background */
+  --surface: #FFFFFF;     /* cards (projects, contact) */
+  --text: #201335;        /* Dark purple primary text */
+  --muted: #6F665F;       /* warm neutral for secondary text */
+  --line: #E6E1DC;        /* subtle borders/dividers */
 
-  /* Accents */
-  --accent: #e9772f;      /* hover/focus/links accent */
-  --accent-2: #7a9a86;    /* optional secondary accent */
+  /* Accents (from your swatches) */
+  --accent: #FF5A5F;      /* Bittersweet – buttons, hovers, focus */
+  --accent-2: #4F4789;    /* Ultra Violet – secondary accent */
 
-  /* Components (centralized) */
-  --chip-bg: #e8f0eb;         /* tag chip background */
-  --chip-border: #d3e1d8;     /* tag chip border */
-  --chip-text: #16301f;       /* tag chip text */
+  /* Components */
+  --chip-bg: #ECE8E3;         /* tag chip background (light neutral) */
+  --chip-border: #E0DAD3;     /* chip border */
+  --chip-text: #201335;       /* chip text (same as body text) */
 
-  --media-bg: #f2f2ef;        /* media tile bg */
-  --media-fallback: #f0f0ed;  /* <img>/<video> fallback bg */
-  --details-bg: #fbfaf7;      /* dropdown panel bg */
-  --header-glass: rgba(255,255,255,.75); /* sticky header backdrop */
-  --surface-soft: #f7f7f4;     /* soft chip/button background */
+  --media-bg: #EEECEA;        /* media tile background */
+  --media-fallback: #E9E6E2;  /* <img>/<video> fallback bg */
+  --details-bg: #F5F2EF;      /* dropdown panel bg */
+  --header-glass: rgba(255,255,255,.78); /* sticky header backdrop */
+  --surface-soft: #F6F4F1;     /* soft chip/button bg */
 
   /* Layout/animation */
   --radius: 16px;
