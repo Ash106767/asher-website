@@ -151,7 +151,7 @@ body {
 }
 
 /* Footer */
-.site-footer{ border-top:1px solid var(--line); color:var(--muted); }
+.site-footer{ border-top:1px solid var(--line); color: var(--footer-text); }
 .site-footer .wrap{ padding:1.1rem var(--space); }
 
 /* Media hover lift */
