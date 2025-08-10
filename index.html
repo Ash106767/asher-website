@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Asher Lopez — Projects</title>
+  <meta name="description" content="A loose, organized showcase of physical projects." />
+  <meta name="theme-color" content="#0f1e18" />
+  <!-- Optional Google Fonts (safe to remove if you prefer system fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <a class="skip" href="#projects">Skip to projects</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <h1 class="brand">Asher Lopez</h1>
+      <nav class="nav">
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="projects" class="projects">
+    <!-- ===== Project Template 1 ===== -->
+    <article class="project reveal">
+      <header class="project-head">
+        <h2>Project Template 1</h2>
+        <ul class="tags">
+          <li>wood</li><li>metal</li><li>prototype</li>
+        </ul>
+      </header>
+
+      <p class="blurb">
+        A quick one-liner about what this is. Keep it casual; this site leans “scrapbooky” but organized.
+      </p>
+
+      <!-- Media grid: drop any mix of JPG/PNG/MP4/WebM/GIF. Any aspect ratio is fine. -->
+      <div class="media-grid">
+        <figure class="media reveal">
+          <img src="assets/project1-1.jpg" alt="Project Template 1 — angle view" loading="lazy">
+          <figcaption>First pass / mockup</figcaption>
+        </figure>
+
+        <figure class="media reveal">
+          <video src="assets/project1-demo.mp4" controls preload="metadata"></video>
+          <figcaption>Short demo video</figcaption>
+        </figure>
+
+        <figure class="media reveal">
+          <img src="assets/project1-2.jpg" alt="Project Template 1 — detail" loading="lazy">
+        </figure>
+      </div>
+
+      <!-- Long text lives here; collapsed by default -->
+      <details class="more">
+        <summary><span class="caret" aria-hidden="true"></span> Read more</summary>
+        <div class="more-body">
+          <p>Longer notes, process pics, mistakes, measurements, whatever. You can paste a few paragraphs here without cluttering the page.</p>
+          <ul>
+            <li>Materials: plywood, steel rod, 3D-printed jig.</li>
+            <li>Tools: router, drill press, PLA printer.</li>
+            <li>Time: ~2 weekends.</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <!-- ===== Project Template 2 ===== -->
+    <article class="project reveal">
+      <header class="project-head">
+        <h2>Project Template 2</h2>
+        <ul class="tags">
+          <li>electronics</li><li>LEDs</li><li>enclosure</li>
+        </ul>
+      </header>
+
+      <p class="blurb">Another quick description. No external links needed.</p>
+
+      <div class="media-grid">
+        <figure class="media reveal">
+          <img src="assets/project2-1.jpg" alt="Project Template 2 — assembled front" loading="lazy">
+        </figure>
+        <figure class="media reveal">
+          <img src="assets/project2-2.jpg" alt="Project Template 2 — inside wiring" loading="lazy">
+        </figure>
+        <figure class="media reveal">
+          <video src="assets/project2-loop.mp4" controls preload="metadata"></video>
+          <figcaption>Looping animation</figcaption>
+        </figure>
+      </div>
+
+      <details class="more">
+        <summary><span class="caret" aria-hidden="true"></span> Build notes</summary>
+        <div class="more-body">
+          <p>Parts list, wiring diagram notes, tolerances that only you care about but future-you will thank you for.</p>
+        </div>
+      </details>
+    </article>
+
+    <!-- ===== Project Template 3 ===== -->
+    <article class="project reveal">
+      <header class="project-head">
+        <h2>Project Template 3</h2>
+        <ul class="tags">
+          <li>scrap</li><li>repair</li>
+        </ul>
+      </header>
+
+      <p class="blurb">Placeholder text. Swap in your own pics and text later.</p>
+
+      <div class="media-grid">
+        <figure class="media reveal">
+          <img src="assets/project3-1.jpg" alt="Project Template 3 — before" loading="lazy">
+          <figcaption>Before</figcaption>
+        </figure>
+        <figure class="media reveal">
+          <img src="assets/project3-2.jpg" alt="Project Template 3 — after" loading="lazy">
+          <figcaption>After</figcaption>
+        </figure>
+      </div>
+
+      <details class="more">
+        <summary><span class="caret" aria-hidden="true"></span> Notes</summary>
+        <div class="more-body">
+          <p>Put the long story here. The dropdown keeps the page tidy.</p>
+        </div>
+      </details>
+    </article>
+  </main>
+
+  <section id="contact" class="contact reveal">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p>Want to say hi or ask about a build?</p>
+      <ul class="socials">
+        <li><a href="mailto:you@asherlopez.net" class="chip" aria-label="Email">✉️ Email</a></li>
+        <li><a href="https://www.linkedin.com/in/YOUR-LINKEDIN" class="chip" target="_blank" rel="me noopener">in</a></li>
+        <li><a href="https://www.instagram.com/YOUR-INSTAGRAM" class="chip" target="_blank" rel="me noopener">IG</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <small>© <span id="year"></span> Asher Lopez. Built with plain HTML/CSS/JS.</small>
+    </div>
+  </footer>
+</body>
+</html>
