@@ -65,7 +65,7 @@ body {
 }
 
 /* two columns when there’s room (tweak breakpoint if you like) */
-@media (min-width: 900px){
+@media (min-width: 1300px){
   .projects{ grid-template-columns: 1fr 1fr; }
 }
 
