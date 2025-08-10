@@ -1,35 +1,36 @@
 :root{
-  /* Core palette (your swatches) */
-  --bg: #7D6B57;          /* Coyote – page background */
-  --surface: #FFFFFF;     /* cards */
-  --text: #201335;        /* dark purple text */
-  --muted: #6F665F;       /* secondary text */
-  --line: #E6E1DC;        /* borders/dividers */
-  --footer-text: #F1ECE6;   /* light neutral on the brown bg */
-
+  /* Warm, cream-on-charcoal palette */
+  --bg: #2B2726;            /* warm charcoal page background (not blue) */
+  --surface: #F6F0E6;       /* cream card background */
+  --text: #1E1A16;          /* inky brown-black for body text */
+  --muted: #6E655C;         /* warm grey for secondary text */
+  --line: #E7DFD3;          /* warm border/divider on cream */
+  --footer-text: #EDE6DC;   /* footer text on dark bg */
 
   /* Accents */
-  --accent: #FF5A5F;      /* salmon – links/hover/focus */
-  --accent-2: #4F4789;    /* violet – secondary accent */
+  --accent: #FF6A2A;        /* safety orange (chips/links/hover) */
+  --accent-2: #8A7C6B;      /* muted taupe (secondary accent, subtle) */
 
   /* Components */
-  --chip-bg: #FF5A5F;     /* salmon chips (filled) */
-  --chip-border: #FF5A5F;
+  --chip-bg: #FF6A2A;
+  --chip-border: #FF6A2A;
   --chip-text: #FFFFFF;
 
-  --media-bg: #EEECEA;        /* media tile bg */
-  --media-fallback: #E9E6E2;  /* <img>/<video> fallback */
-  --details-bg: #F5F2EF;      /* dropdown panel bg */
-  --header-glass: rgba(255,255,255,.78); /* sticky header backdrop */
-  --surface-soft: #F6F4F1;     /* soft chip/button bg */
+  --media-bg: #F2EDE4;        /* light tile bg inside cards */
+  --media-fallback: #EDE6DA;  /* <img>/<video> fallback */
+  --details-bg: #FAF6EE;      /* dropdown panel bg */
+  --header-glass: rgba(255, 247, 236, .78); /* warm-tinted sticky header */
+  --surface-soft: #F7F1E8;     /* soft chip/button bg */
 
   /* Layout/animation */
   --radius: 16px;
-  --shadow: 0 1px 1px rgba(20,20,15,.04), 0 12px 30px rgba(20,20,15,.08);
+  --shadow: 0 1px 1px rgba(37,29,20,.05), 0 12px 30px rgba(37,29,20,.10);
   --space: clamp(16px, 2vw, 24px);
-  --maxw: 1600px;
+  --maxw: 2000px;
   --speed: 400ms;
 }
+
+
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -81,6 +82,7 @@ body {
   .project + .project{ border-top: 0; margin-top: 0; padding-top: 0; }
 }
 
+
 /* Project card (simple) */
 .project{
   background: var(--surface);
@@ -91,18 +93,10 @@ body {
   transition: transform 200ms cubic-bezier(.2,.8,.2,1);
 }
 
-/* Slide-in directions (set by JS) */
-.project.slide-l { transform: translateX(-28px); }
-.project.slide-r { transform: translateX(28px); }
-.project.in      { transform: translateX(0); }
+.project:hover { transform: translateY(-3px) scale(1.01); }
 
-/* Calm hover once the card is “in” */
-.project.in:hover { transform: translateY(-3px) scale(1.01); }
-
-/* Media items: slide-up + hover */
-.media { transform: translateY(12px); transition: transform 220ms cubic-bezier(.2,.8,.2,1); }
-.media.in { transform: translateY(0); }
-.media.in:hover { transform: translateY(-2px) scale(1.01); }
+.media { transition: transform 180ms cubic-bezier(.2,.8,.2,1); }
+.media:hover { transform: translateY(-2px) scale(1.01); }
 
 .blurb{ margin:.6rem 0 1rem; }
 
@@ -128,12 +122,16 @@ body {
 .more[open] .caret::before{ transform: rotate(90deg) translateY(-1px); }
 .more-body{ padding:.25rem 1rem 1rem; color:var(--muted); }
 
-/* Contact */
 .contact .wrap{
+  width: min(100% - 2*var(--space), 720px); /* make the card narrower */
+  margin-inline: auto;                      /* center it */
   padding: var(--space);
   background: var(--surface);
-  border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
 }
+
 .contact h2{ margin-top:0; font:700 clamp(20px,3vw,26px)/1.2 "Space Grotesk", Inter, system-ui; }
 .socials{ list-style:none; padding:0; margin:.6rem 0 0; display:flex; flex-wrap:wrap; gap:.6rem; }
 
@@ -152,7 +150,11 @@ body {
 
 /* Footer */
 .site-footer{ border-top:0px solid var(--line); color: var(--footer-text); }
-.site-footer .wrap{ padding:1.1rem var(--space); }
+.site-footer .wrap {
+  padding: 1.1rem var(--space);
+  text-align: center; /* center the text */
+}
+
 
 /* Media hover lift */
 .media:hover{ transform: translateY(-2px); transition: transform 180ms cubic-bezier(.2,.8,.2,1); }
@@ -196,3 +198,87 @@ body {
   font-weight: 600;
 }
 .email-link:hover { color: var(--accent); }
+
+/* ===== Lightbox (click-to-expand) ===== */
+.media { position: relative; }
+
+/* Click-to-expand button (centered SVG icon) */
+.media .expand{
+  position: absolute; top: 8px; right: 8px;
+  width: 32px; height: 32px; padding: 0;
+  display: grid; place-items: center;
+  border-radius: 10px; border: 1px solid var(--line);
+  background: var(--surface-soft); color: var(--text);
+  box-shadow: 0 6px 16px rgba(0,0,0,.08);
+  opacity: 0; transform: translateY(-2px);
+  transition: opacity .18s, transform .18s, border-color .18s, color .18s;
+  cursor: pointer;
+}
+.media:hover .expand,
+.media .expand:focus-visible { opacity: 1; transform: translateY(0); }
+.media .expand:hover{ border-color: var(--accent); color: var(--accent); }
+.media .expand svg{ width: 18px; height: 18px; display: block; stroke: currentColor; stroke-width: 2; fill: none; }
+
+
+/* overlay */
+.lightbox{
+  position: fixed; inset: 0; display: none;
+  align-items: center; justify-content: center;
+  background: rgba(32,19,53,.55); /* purple-tinted glass; tweak if you like */
+  backdrop-filter: blur(4px) saturate(1);
+  z-index: 1000;
+}
+.lightbox.open{ display: flex; }
+
+.lightbox .close{
+  position: absolute; top: 14px; right: 16px;
+  padding: .45rem .7rem; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface);
+  color: var(--text); cursor: pointer;
+}
+.lightbox figure{ margin:0; max-width:min(100vw - 40px, 1200px); max-height:calc(100vh - 80px); display:flex; gap:10px; }
+.lightbox .media-wrap{
+  background: var(--surface); border:1px solid var(--line);
+  border-radius: 12px; padding: 8px; box-shadow: var(--shadow);
+}
+.lightbox img, .lightbox video{
+  display:block; max-width:100%; max-height:calc(100vh - 160px);
+  border-radius: 8px; background: var(--media-fallback);
+}
+.lightbox .caption{ color: var(--muted); text-align:center; font-size:.95rem; }
+
+/* reduced motion: keep it instant */
+@media (prefers-reduced-motion: reduce){
+  .media .expand{ transition:none; }
+}
+
+
+/* Fixes alignment for the first project card title */
+.projects > .project:first-of-type .project-head h2{
+  margin-top: 0;
+  line-height: 1.1;        /* slightly tighter box */
+  position: relative;
+  top: -3px;               /* tweak: -2px to -5px to taste */
+}
+
+body{
+  background-color: var(--bg);
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 1920 1080'>\
+<g fill='none' stroke='%23FF6A2A' stroke-linecap='round' stroke-width='26'>\
+  <!-- parallel diagonals -->\
+  <path d='M-200,300 L900,-800'/>\
+  <path d='M-140,360 L960,-740'/>\
+  <path d='M-80,420 L1020,-680'/>\
+  <path d='M-20,480 L1080,-620'/>\
+  <path d='M-20,600 L1140,-560'/>\
+  <!-- big rounded arcs -->\
+  <path d='M500,1200 A900,900 0 0 0 1950,500'/>\
+  <path d='M600,1200 A800,800 0 0 0 1950,600'/>\
+  <path d='M700,1200 A700,700 0 0 0 1950,700'/>\
+</g></svg>");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+}
+
