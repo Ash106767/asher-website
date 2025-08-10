@@ -28,16 +28,19 @@
   --space: clamp(16px, 2vw, 24px);
   --maxw: 2000px;
   --speed: 400ms;
+  
+  
+  /* fonts  */
+  --font-body: "Rubik", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  --font-brand: "Space Grotesk", var(--font-body);
 }
 
 
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body {
-  margin: 0; background: var(--bg); color: var(--text);
-  font: 400 16px/1.6 Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-}
+body  { font: 400 16px/1.6 var(--font-body); }
+.brand{ font: 700 clamp(18px, 2.8vw, 24px)/1 var(--font-brand); }
 
 /* Accessibility */
 .skip { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
@@ -224,7 +227,7 @@ body {
 .lightbox{
   position: fixed; inset: 0; display: none;
   align-items: center; justify-content: center;
-  background: rgba(32,19,53,.55); /* purple-tinted glass; tweak if you like */
+  background: rgba(52,26,58,.55); /* purple-tinted glass; tweak if you like */
   backdrop-filter: blur(4px) saturate(1);
   z-index: 1000;
 }
@@ -236,14 +239,27 @@ body {
   border: 1px solid var(--line); background: var(--surface);
   color: var(--text); cursor: pointer;
 }
-.lightbox figure{ margin:0; max-width:min(100vw - 40px, 1200px); max-height:calc(100vh - 80px); display:flex; gap:10px; }
-.lightbox .media-wrap{
-  background: var(--surface); border:1px solid var(--line);
-  border-radius: 12px; padding: 8px; box-shadow: var(--shadow);
+.lightbox figure{
+  margin: 0;
+  width: min(96vw, 1600px);          /* wider cap so it can grow */
+  max-height: calc(100vh - 80px);
+  display: flex; gap: 10px;
 }
-.lightbox img, .lightbox video{
-  display:block; max-width:100%; max-height:calc(100vh - 160px);
-  border-radius: 8px; background: var(--media-fallback);
+.lightbox .media-wrap{
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px; padding: 8px; box-shadow: var(--shadow);
+  display: flex; align-items: center; justify-content: center;  /* center the media */
+  flex: 1 1 auto;
+}
+.lightbox img,
+.lightbox video{
+  display: block;
+  width: 100%;                      /* <- fill the container */
+  height: auto;
+  max-height: calc(100vh - 160px);  /* keep within viewport height */
+  background: var(--media-fallback);
+  border-radius: 8px;
 }
 .lightbox .caption{ color: var(--muted); text-align:center; font-size:.95rem; }
 
@@ -263,22 +279,32 @@ body {
 
 body{
   background-color: var(--bg);
-  background-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 1920 1080'>\
+
+  /* Layer 1: diagonals — top-left, fixed 1920×1080 */
+  background-image:
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080' viewBox='0 0 1920 1080'>\
 <g fill='none' stroke='%23FF6A2A' stroke-linecap='round' stroke-width='26'>\
-  <!-- parallel diagonals -->\
   <path d='M-200,300 L900,-800'/>\
   <path d='M-140,360 L960,-740'/>\
   <path d='M-80,420 L1020,-680'/>\
   <path d='M-20,480 L1080,-620'/>\
   <path d='M-20,600 L1140,-560'/>\
-  <!-- big rounded arcs -->\
+</g></svg>"),
+
+  /* Layer 2: arcs — bottom-right, fixed 1450×700 (tight to arcs) */
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='1450' height='700' viewBox='500 500 1450 700'>\
+<g fill='none' stroke='%23FF6A2A' stroke-linecap='round' stroke-width='26'>\
   <path d='M500,1200 A900,900 0 0 0 1950,500'/>\
   <path d='M600,1200 A800,800 0 0 0 1950,600'/>\
   <path d='M700,1200 A700,700 0 0 0 1950,700'/>\
 </g></svg>");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-position: center;
-}
+  
+  
+  background-repeat: no-repeat, no-repeat;
+  /* first layer (diagonals), second layer (arcs) */
+background-position: top left, right -28px bottom -20px;
 
+  background-size: auto, auto;                 /* use intrinsic px sizes */
+}
