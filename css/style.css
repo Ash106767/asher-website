@@ -5,6 +5,8 @@
   --text: #201335;        /* dark purple text */
   --muted: #6F665F;       /* secondary text */
   --line: #E6E1DC;        /* borders/dividers */
+  --footer-text: #F1ECE6;   /* light neutral on the brown bg */
+
 
   /* Accents */
   --accent: #FF5A5F;      /* salmon – links/hover/focus */
