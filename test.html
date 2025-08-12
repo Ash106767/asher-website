@@ -1,0 +1,9 @@
+<!doctype html><meta charset="utf-8">
+<title>video test</title>
+<video id="v" src="assets/flower.mp4"
+       controls autoplay muted playsinline preload="auto"
+       style="display:block;width:640px;max-width:100%;background:#000"></video>
+<script>
+v.addEventListener('loadedmetadata',()=>{ try{ v.currentTime=0.05 }catch(e){} });
+v.addEventListener('error',()=>console.log('video error', v.error));
+</script>
