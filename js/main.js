@@ -65,24 +65,27 @@ document.addEventListener('DOMContentLoaded', () => {
     node.src = img.currentSrc || img.src;
     node.alt = img.alt || '';
   } else if (vid) {
-    // Clone the actual <video> so we keep all <source> children & attributes
-    node = vid.cloneNode(true);
-    node.removeAttribute('width');
-    node.removeAttribute('height');
-    node.controls = true;
-    node.muted = true;          // allow autoplay reliably
-    node.autoplay = true;
-    node.playsInline = true;
-    // if you want loop in the lightbox:
-    if (vid.hasAttribute('loop')) node.loop = true;
+  const clone = vid.cloneNode(true);       // keep <source> children
+  clone.removeAttribute('width');
+  clone.removeAttribute('height');
+  clone.controls = true;
+  clone.muted = true;
+  clone.autoplay = true;
+  clone.playsInline = true;
+  clone.preload = 'auto';                  // fetch actual frames
 
-    // Make sure the browser selects a source, then try to play
-    node.load();
-    node.addEventListener('loadeddata', () => {
-      // ignore the promise rejection if user gesture is needed
-      node.play().catch(()=>{});
-    });
-  }
+  // Force the first frame to render even if autoplay is blocked
+  clone.addEventListener('loadedmetadata', () => {
+    try { clone.currentTime = 0.001; } catch (_) {}
+  });
+  clone.addEventListener('canplay', () => {
+    const p = clone.play();
+    if (p && p.catch) p.catch(()=>{});     // ignore gesture errors
+  });
+
+  node = clone;
+}
+
 
   if (node) wrap.appendChild(node);
   caption.textContent = fig.querySelector('figcaption')?.textContent?.trim() || '';
