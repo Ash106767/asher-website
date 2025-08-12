@@ -65,26 +65,19 @@ document.addEventListener('DOMContentLoaded', () => {
     node.src = img.currentSrc || img.src;
     node.alt = img.alt || '';
   } else if (vid) {
-  const clone = vid.cloneNode(true);       // keep <source> children
-  clone.removeAttribute('width');
-  clone.removeAttribute('height');
+  const clone = vid.cloneNode(true);   // keep <source> children
   clone.controls = true;
   clone.muted = true;
   clone.autoplay = true;
   clone.playsInline = true;
-  clone.preload = 'auto';                  // fetch actual frames
-
-  // Force the first frame to render even if autoplay is blocked
+  clone.preload = 'auto';
   clone.addEventListener('loadedmetadata', () => {
-    try { clone.currentTime = 0.001; } catch (_) {}
+    try { clone.currentTime = 0.05; } catch {}
   });
-  clone.addEventListener('canplay', () => {
-    const p = clone.play();
-    if (p && p.catch) p.catch(()=>{});     // ignore gesture errors
-  });
-
+  clone.addEventListener('canplay', () => clone.play().catch(()=>{}));
   node = clone;
 }
+
 
 
   if (node) wrap.appendChild(node);
