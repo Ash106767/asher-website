@@ -55,31 +55,41 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
 
   function openLightbox(fig){
-    // Build a fresh <img> or <video> element
-    wrap.innerHTML = '';
-    const img = fig.querySelector('img');
-    const vid = fig.querySelector('video');
-    let node;
+  wrap.innerHTML = '';
+  const img = fig.querySelector('img');
+  const vid = fig.querySelector('video');
+  let node;
 
-    if (img) {
-      node = document.createElement('img');
-      node.src = img.currentSrc || img.src;
-      node.alt = img.alt || '';
-    } else if (vid) {
-      node = document.createElement('video');
-      node.src = vid.currentSrc || vid.src;
-      node.controls = true;
-      node.autoplay = true;
-      node.loop = vid.hasAttribute('loop');
-      node.playsInline = true;
-      if (vid.poster) node.poster = vid.poster;
-    }
+  if (img) {
+    node = document.createElement('img');
+    node.src = img.currentSrc || img.src;
+    node.alt = img.alt || '';
+  } else if (vid) {
+    // Clone the actual <video> so we keep all <source> children & attributes
+    node = vid.cloneNode(true);
+    node.removeAttribute('width');
+    node.removeAttribute('height');
+    node.controls = true;
+    node.muted = true;          // allow autoplay reliably
+    node.autoplay = true;
+    node.playsInline = true;
+    // if you want loop in the lightbox:
+    if (vid.hasAttribute('loop')) node.loop = true;
 
-    if (node) wrap.appendChild(node);
-    caption.textContent = fig.querySelector('figcaption')?.textContent?.trim() || '';
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    // Make sure the browser selects a source, then try to play
+    node.load();
+    node.addEventListener('loadeddata', () => {
+      // ignore the promise rejection if user gesture is needed
+      node.play().catch(()=>{});
+    });
   }
+
+  if (node) wrap.appendChild(node);
+  caption.textContent = fig.querySelector('figcaption')?.textContent?.trim() || '';
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
 });
 
 
